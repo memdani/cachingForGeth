@@ -12,9 +12,11 @@ const simpleContractAbi = "../"
 //     }
 // ]
 
-const abiFile = fs.readFileSync('./abi/simple/simple_sol_MyContract.abi');
-const abi = JSON.parse(abiFile);
-const address = "0xFc1fBDaECf9e9cbf70890EDD112F05Cbd77f94A1"
+// const abiFile = fs.readFileSync('./abi/simple/simple_sol_MyContract.abi');
+
+// const abi = JSON.parse(abiFile);
+const abi = [{"inputs":[],"name":"getMessage","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"string","name":"message","type":"string"}],"name":"setMessage","outputs":[],"stateMutability":"nonpayable","type":"function"}]
+const address = "0xFA3D2E6Af6628a5949b1FAAE602E1b8d3784294a"
 
 
 // const ethCallerAbi = [
