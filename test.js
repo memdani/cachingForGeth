@@ -4,7 +4,9 @@ const Web3 = require('web3');
 const providerUrl = 'http://localhost:8545';
 
 // Address to check
-const addressToCheck = '0xFA3D2E6Af6628a5949b1FAAE602E1b8d3784294a';
+//const addressToCheck = '0xFA3D2E6Af6628a5949b1FAAE602E1b8d3784294a';
+
+const addressToCheck = '0xf8e9Ce79B4347Ba42C5733611D4cC003DE935be2';
 
 // Create a new Web3 instance
 const web3 = new Web3(providerUrl);

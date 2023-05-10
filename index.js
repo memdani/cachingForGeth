@@ -4,19 +4,42 @@ const fs = require("fs");
 
 const simpleContractAbi = "../"
 
-// const contractList = [
-//     {
-//         "address": " ",
-//         "abi": " ", 
-//         "function": " "
-//     }
-// ]
+const contractList = [
+    {
+        "address": "0x7b4A7c78b6e07D976C5C02b28F4C07C26198C9F6",
+        "abi": [ { "inputs": [], "name": "getMessage", "outputs": [ { "internalType": "string", "name": "", "type": "string" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "retrieveInfo", "outputs": [ { "internalType": "string", "name": "", "type": "string" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "string", "name": "_message", "type": "string" } ], "name": "setMessage", "outputs": [], "stateMutability": "nonpayable", "type": "function" } ] 
+       
+    },
+
+    {
+        "address": "0x925dfCeE7255E25c9d7D5Cc4b959F0b6B5A38714",
+        "abi": [ { "inputs": [ { "internalType": "string", "name": "option", "type": "string" } ], "name": "getVoteCount", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "retrieveInfo", "outputs": [ { "internalType": "uint256[]", "name": "", "type": "uint256[]" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "string", "name": "option", "type": "string" } ], "name": "vote", "outputs": [], "stateMutability": "nonpayable", "type": "function" } ], 
+       
+    },
+
+    {
+        "address": "0x4DaA1f42e939221d077BE3a0B907411C365B8520",
+        "abi": [ { "inputs": [], "name": "bid", "outputs": [], "stateMutability": "payable", "type": "function" }, { "inputs": [], "name": "getHighestBid", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "getHighestBidder", "outputs": [ { "internalType": "address", "name": "", "type": "address" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "retrieveInfo", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" }, { "internalType": "address", "name": "", "type": "address" } ], "stateMutability": "view", "type": "function" } ], 
+       
+    },
+
+    {
+        "address": "0x1512fa2FEC532CFf7A00FA72035E458823d47e2A",
+        "abi": [ { "inputs": [ { "internalType": "string", "name": "_name", "type": "string" }, { "internalType": "uint256", "name": "_price", "type": "uint256" } ], "name": "addItem", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "uint256", "name": "_index", "type": "uint256" } ], "name": "getItem", "outputs": [ { "internalType": "string", "name": "", "type": "string" }, { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "getItemCount", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "retrieveInfo", "outputs": [ { "internalType": "string[]", "name": "", "type": "string[]" }, { "internalType": "uint256[]", "name": "", "type": "uint256[]" } ], "stateMutability": "view", "type": "function" } ], 
+       
+    },
+
+    {
+        "address": "0x3FDDaAB35f296B9f43F0Dd053Fd5c2D56060C165",
+        "abi": [ { "inputs": [], "stateMutability": "nonpayable", "type": "constructor" }, { "inputs": [], "name": "deposit", "outputs": [], "stateMutability": "payable", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "_account", "type": "address" } ], "name": "getBalance", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "retrieveInfo", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" }, { "internalType": "address", "name": "", "type": "address" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "uint256", "name": "_amount", "type": "uint256" } ], "name": "withdraw", "outputs": [], "stateMutability": "nonpayable", "type": "function" } ],
+    }
+]
 
 // const abiFile = fs.readFileSync('./abi/simple/simple_sol_MyContract.abi');
 
 // const abi = JSON.parse(abiFile);
-const abi = [{"inputs":[],"name":"getMessage","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"string","name":"message","type":"string"}],"name":"setMessage","outputs":[],"stateMutability":"nonpayable","type":"function"}]
-const address = "0xFA3D2E6Af6628a5949b1FAAE602E1b8d3784294a"
+// const abi = [{"inputs":[],"name":"getMessage","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"string","name":"message","type":"string"}],"name":"setMessage","outputs":[],"stateMutability":"nonpayable","type":"function"}]
+// const address = "0xFA3D2E6Af6628a5949b1FAAE602E1b8d3784294a"
 
 
 // const ethCallerAbi = [
@@ -42,10 +65,18 @@ const address = "0xFA3D2E6Af6628a5949b1FAAE602E1b8d3784294a"
 
 
 async function callContract(){
+    //const contract = new web3.eth.Contract(abi, address);
+
+    var randIndex = Math.floor(Math.random() * 5);
+    abi = contractList[randIndex]['abi'];
+    address = contractList[randIndex]['address'];
+
     const contract = new web3.eth.Contract(abi, address);
+
+
     try {
         // Call the getMessage() function
-        const message = await contract.methods.getMessage().call();
+        const message = await contract.methods.retrieveInfo().call();
         // Print the message
         console.log('Message:', message);
     } catch (error) {
