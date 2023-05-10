@@ -6,31 +6,31 @@ const simpleContractAbi = "../"
 
 const contractList = [
     {
-        "address": "0x7b4A7c78b6e07D976C5C02b28F4C07C26198C9F6",
+        "address": "0x7b4A7c78b6e07D976C5C02b28F4C07C26198C9F6", //simple.sol
         "abi": [ { "inputs": [], "name": "getMessage", "outputs": [ { "internalType": "string", "name": "", "type": "string" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "retrieveInfo", "outputs": [ { "internalType": "string", "name": "", "type": "string" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "string", "name": "_message", "type": "string" } ], "name": "setMessage", "outputs": [], "stateMutability": "nonpayable", "type": "function" } ] 
        
     },
 
     {
-        "address": "0x925dfCeE7255E25c9d7D5Cc4b959F0b6B5A38714",
+        "address": "0x925dfCeE7255E25c9d7D5Cc4b959F0b6B5A38714", //voting.sol
         "abi": [ { "inputs": [ { "internalType": "string", "name": "option", "type": "string" } ], "name": "getVoteCount", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "retrieveInfo", "outputs": [ { "internalType": "uint256[]", "name": "", "type": "uint256[]" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "string", "name": "option", "type": "string" } ], "name": "vote", "outputs": [], "stateMutability": "nonpayable", "type": "function" } ], 
        
     },
 
     {
-        "address": "0x4DaA1f42e939221d077BE3a0B907411C365B8520",
+        "address": "0x4DaA1f42e939221d077BE3a0B907411C365B8520", //auction.sol
         "abi": [ { "inputs": [], "name": "bid", "outputs": [], "stateMutability": "payable", "type": "function" }, { "inputs": [], "name": "getHighestBid", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "getHighestBidder", "outputs": [ { "internalType": "address", "name": "", "type": "address" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "retrieveInfo", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" }, { "internalType": "address", "name": "", "type": "address" } ], "stateMutability": "view", "type": "function" } ], 
        
     },
 
     {
-        "address": "0x1512fa2FEC532CFf7A00FA72035E458823d47e2A",
+        "address": "0x1512fa2FEC532CFf7A00FA72035E458823d47e2A", //market.sol
         "abi": [ { "inputs": [ { "internalType": "string", "name": "_name", "type": "string" }, { "internalType": "uint256", "name": "_price", "type": "uint256" } ], "name": "addItem", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "uint256", "name": "_index", "type": "uint256" } ], "name": "getItem", "outputs": [ { "internalType": "string", "name": "", "type": "string" }, { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "getItemCount", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "retrieveInfo", "outputs": [ { "internalType": "string[]", "name": "", "type": "string[]" }, { "internalType": "uint256[]", "name": "", "type": "uint256[]" } ], "stateMutability": "view", "type": "function" } ], 
        
     },
 
     {
-        "address": "0x3FDDaAB35f296B9f43F0Dd053Fd5c2D56060C165",
+        "address": "0x3FDDaAB35f296B9f43F0Dd053Fd5c2D56060C165", //bank.sol
         "abi": [ { "inputs": [], "stateMutability": "nonpayable", "type": "constructor" }, { "inputs": [], "name": "deposit", "outputs": [], "stateMutability": "payable", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "_account", "type": "address" } ], "name": "getBalance", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "retrieveInfo", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" }, { "internalType": "address", "name": "", "type": "address" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "uint256", "name": "_amount", "type": "uint256" } ], "name": "withdraw", "outputs": [], "stateMutability": "nonpayable", "type": "function" } ],
     }
 ]
@@ -79,8 +79,10 @@ async function callContract(){
         const message = await contract.methods.retrieveInfo().call();
         // Print the message
         console.log('Message:', message);
+        return message;
     } catch (error) {
         console.error('Error:', error);
+        return error;
     }
 }
 
@@ -95,6 +97,7 @@ async function createLogEntry(logfile, entryVal){
     const logEntry = String(entryVal) + " : " + String(d.getTime()) + "----" + String(datetime) + "\n";
     fs.appendFile(logfile,logEntry,(err,file) => { if(err) throw err;})
     console.log(logEntry);
+    return d.getTime();
 
 }
 
@@ -108,10 +111,14 @@ async function run() {
 
     while (true) {
 
-        await createLogEntry(logfile,"Calling Contract");
-        await callContract();
+        const startTime = await createLogEntry(logfile,"Calling Contract");
+        const msg = await callContract();
         // await del();
-        await createLogEntry(logfile,"Output received");
+        const endTime = await createLogEntry(logfile,msg);
+        const latency = (endTime - startTime);
+        const latencyLogEntry = "Latency = " + String(latency);
+        createLogEntry(logfile,latencyLogEntry);
+        fs.appendFile(logfile,"--------------------------------------\n",(err,file) => { if(err) throw err;})
         await new Promise(resolve => setTimeout(resolve, 1000)); // Wait for 1 second before calling again
         
     }
