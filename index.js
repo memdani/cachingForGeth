@@ -32,6 +32,21 @@ const contractList = [
     {
         "address": "0x3FDDaAB35f296B9f43F0Dd053Fd5c2D56060C165", //bank.sol
         "abi": [ { "inputs": [], "stateMutability": "nonpayable", "type": "constructor" }, { "inputs": [], "name": "deposit", "outputs": [], "stateMutability": "payable", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "_account", "type": "address" } ], "name": "getBalance", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "retrieveInfo", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" }, { "internalType": "address", "name": "", "type": "address" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "uint256", "name": "_amount", "type": "uint256" } ], "name": "withdraw", "outputs": [], "stateMutability": "nonpayable", "type": "function" } ],
+    },
+
+    {
+        "address": "0xD67F15e35C0889869512222f89b3a181fa8532f3", //personal info
+        "abi": [ { "inputs": [], "name": "retrieveInfo", "outputs": [ { "internalType": "string", "name": "", "type": "string" }, { "internalType": "uint256", "name": "", "type": "uint256" }, { "internalType": "string", "name": "", "type": "string" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "_address", "type": "address" } ], "name": "retrieveInfoForAddress", "outputs": [ { "internalType": "string", "name": "", "type": "string" }, { "internalType": "uint256", "name": "", "type": "uint256" }, { "internalType": "string", "name": "", "type": "string" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "string", "name": "_name", "type": "string" }, { "internalType": "uint256", "name": "_age", "type": "uint256" }, { "internalType": "string", "name": "_email", "type": "string" } ], "name": "storeInfo", "outputs": [], "stateMutability": "nonpayable", "type": "function" } ],
+    },
+
+    {
+        "address": "0xa17a273a419189aA4a34a018c43A405A23DcF9E8", //task list
+        "abi": [ { "inputs": [ { "internalType": "uint256", "name": "_index", "type": "uint256" } ], "name": "completeTask", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "string", "name": "_title", "type": "string" } ], "name": "createTask", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "retrieveInfo", "outputs": [ { "internalType": "string", "name": "", "type": "string" }, { "internalType": "bool", "name": "", "type": "bool" } ], "stateMutability": "view", "type": "function" } ]
+    },
+
+    {
+        "address":"0x3C3b17aa4daAFBa14c0F7Ab5F9b078366ae70128", //rewards
+        "abi":[ { "inputs": [ { "internalType": "string", "name": "_name", "type": "string" }, { "internalType": "uint256", "name": "_amount", "type": "uint256" } ], "name": "addReward", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "stateMutability": "nonpayable", "type": "constructor" }, { "inputs": [], "name": "retrieveInfo", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" }, { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "rewardCount", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "name": "rewards", "outputs": [ { "internalType": "uint256", "name": "id", "type": "uint256" }, { "internalType": "string", "name": "name", "type": "string" }, { "internalType": "uint256", "name": "amount", "type": "uint256" } ], "stateMutability": "view", "type": "function" } ]
     }
 ]
 
