@@ -47,6 +47,16 @@ const contractList = [
     {
         "address":"0x3C3b17aa4daAFBa14c0F7Ab5F9b078366ae70128", //rewards
         "abi":[ { "inputs": [ { "internalType": "string", "name": "_name", "type": "string" }, { "internalType": "uint256", "name": "_amount", "type": "uint256" } ], "name": "addReward", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "stateMutability": "nonpayable", "type": "constructor" }, { "inputs": [], "name": "retrieveInfo", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" }, { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "rewardCount", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "name": "rewards", "outputs": [ { "internalType": "uint256", "name": "id", "type": "uint256" }, { "internalType": "string", "name": "name", "type": "string" }, { "internalType": "uint256", "name": "amount", "type": "uint256" } ], "stateMutability": "view", "type": "function" } ]
+    },
+
+    {
+        "address": "0x6643192246fAf7b70632f13831d9D58C5Ad05916", //counter
+        "abi": [ { "inputs": [], "name": "increment", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "stateMutability": "nonpayable", "type": "constructor" }, { "inputs": [], "name": "getCount", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "retrieveInfo", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" } ]
+    },
+
+    {
+        "address": "0x5B9aBFE73f5b9AD39BC1666066162A259b3AaE55", //identity
+        "abi": [ { "inputs": [ { "internalType": "bytes32", "name": "_name", "type": "bytes32" }, { "internalType": "bytes32", "name": "_email", "type": "bytes32" } ], "name": "createIdentity", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "bytes32", "name": "_permission", "type": "bytes32" }, { "internalType": "address", "name": "_user", "type": "address" } ], "name": "grantPermission", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "bytes32", "name": "_permission", "type": "bytes32" }, { "internalType": "address", "name": "_user", "type": "address" } ], "name": "revokePermission", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "_user", "type": "address" } ], "name": "verifyIdentity", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "retrieveInfo", "outputs": [ { "internalType": "bytes32", "name": "", "type": "bytes32" }, { "internalType": "bytes32", "name": "", "type": "bytes32" }, { "internalType": "bool", "name": "", "type": "bool" } ], "stateMutability": "view", "type": "function" } ]
     }
 ]
 
@@ -82,7 +92,7 @@ const contractList = [
 async function callContract(){
     //const contract = new web3.eth.Contract(abi, address);
 
-    var randIndex = Math.floor(Math.random() * 5);
+    var randIndex = Math.floor(Math.random() * 10);
     abi = contractList[randIndex]['abi'];
     address = contractList[randIndex]['address'];
 
