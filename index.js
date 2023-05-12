@@ -89,7 +89,7 @@ const contractList = [
 
 
 
-async function callContract(){
+async function callContract(randIndex){
     //const contract = new web3.eth.Contract(abi, address);
 
     var randIndex = Math.floor(Math.random() * 10);
@@ -127,22 +127,70 @@ async function createLogEntry(logfile, entryVal){
 }
 
 
+
+async function logAverageTimeDelays(filePath,c_no,c_delay){
+    
+    var jsonObject = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+    
+    if(jsonObject == undefined){
+        jsonObject = {
+            "values" : [
+                {
+                    "no_of_readings" : 0,
+                    "delay" : 0
+                },{
+                    "no_of_readings" : 0,
+                    "delay" : 0
+                },{
+                    "no_of_readings" : 0,
+                    "delay" : 0
+                },{
+                    "no_of_readings" : 0,
+                    "delay" : 0
+                },{
+                    "no_of_readings" : 0,
+                    "delay" : 0
+                }
+            ]
+        }
+    }
+
+    
+    no_of_readings = parseInt(jsonObject['values'][c_no]['no_of_readings']);
+    no_of_readings += 1;
+    
+    updated_c_delay = (parseInt(jsonObject['values'][c_no]['delay'])*(no_of_readings-1) + parseInt(c_delay))/no_of_readings;
+    
+    
+    jsonObject['values'][c_no]['no_of_readings'] = no_of_readings;
+    jsonObject['values'][c_no]['delay'] = updated_c_delay;
+    
+    
+    jsonObject = JSON.stringify(jsonObject,null,2);
+    fs.writeFileSync(filePath,jsonObject,'utf8');
+    
+
+}
+
 async function del(){
     await new Promise(resolve => setTimeout(resolve, 5000));
 }
 
 async function run() {
     const logfile = "./logs/logfile.txt";
+    const avgLogFile = "./logs/avgLogFile.json";
+
 
     while (true) {
-
+        var randIndex = Math.floor(Math.random() * 5);
         const startTime = await createLogEntry(logfile,"Calling Contract");
-        const msg = await callContract();
+        const msg = await callContract(randIndex);
         // await del();
         const endTime = await createLogEntry(logfile,msg);
         const latency = (endTime - startTime);
         const latencyLogEntry = "Latency = " + String(latency);
         createLogEntry(logfile,latencyLogEntry);
+        logAverageTimeDelays(avgLogFile,randIndex,latency);
         fs.appendFile(logfile,"--------------------------------------\n",(err,file) => { if(err) throw err;})
         await new Promise(resolve => setTimeout(resolve, 1000)); // Wait for 1 second before calling again
         
