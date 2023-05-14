@@ -48,6 +48,18 @@ The following are the smart contracts implemented to check for eth calls:
 9. Personal Information Storage
 10. A reward Mechanism Contract
 
+## Results
+Latency for caching policies of diffrent sizes.
+
+![image](https://github.com/mirchandani-mohnish/cachingForGeth/assets/87660206/50f71815-c629-48bc-b9a3-c06aff1b64cc)
+
+![image](https://github.com/mirchandani-mohnish/cachingForGeth/assets/87660206/b1857936-1364-4c75-89b9-326059f0aac8)
+
+![image](https://github.com/mirchandani-mohnish/cachingForGeth/assets/87660206/13ccbcfe-a2b9-4073-a198-3a7e84bd2f2c)
+
+Hit-Miss Ratio (For 100 calls)
+
+![image](https://github.com/mirchandani-mohnish/cachingForGeth/assets/87660206/bb658e84-7847-454a-b3ba-dfd4d4f29204)
 
 ## Conclusion
 - Caching across all policies generally leads to similar average results.
