@@ -7,7 +7,7 @@ An implementation and benchmarking of various cache policies on the go ethereum 
 ![image](https://github.com/mirchandani-mohnish/cachingForGeth/assets/87660206/eb9157ee-c2ea-4480-94a9-f0d2739c15c2)
 
 ## Logical Design
-![image](https://github.com/mirchandani-mohnish/cachingForGeth/assets/87660206/ee88f262-62cc-4c50-8fb8-a81e6636e0eb)
+![image](https://github.com/mirchandani-mohnish/cachingForGeth/assets/87660206/9ae7aa5c-a041-4dbd-878e-a4b3bd894caf)
 
 ## Platform Brief
 - Go-ethereum: Implements Ethereum blockchain in Go, used for Ethereum network interaction.
