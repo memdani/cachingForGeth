@@ -12,7 +12,7 @@ An implementation and benchmarking of various cache policies on the go ethereum 
 ## Platform Brief
 - Go-ethereum: Implements Ethereum blockchain in Go, used for Ethereum network interaction.
 - Solidity: Programming language for writing smart contracts.
-- Sepolia: No information found.
+- Sepolia: Ethereum Testnet.
 - Remix: Integrated Development Environment for writing, testing, and deploying Ethereum smart contracts.
 - Etherscan: Used to access Ethereum network information such as transaction history, smart contract details, and blockchain statistics.
 - Faucets: WebApps that distribute small amounts of cryptocurrency for free.
