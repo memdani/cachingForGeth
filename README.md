@@ -4,10 +4,11 @@
 An implementation and benchmarking of various cache policies on the go ethereum implementation of a blockchain node in order to possibly improve read call reverts. 
 
 ## Architecture with Technology Components
-![image](https://github.com/mirchandani-mohnish/cachingForGeth/assets/87660206/eb9157ee-c2ea-4480-94a9-f0d2739c15c2)
+![architecture_with_tech_components](https://github.com/mirchandani-mohnish/cachingForGeth/assets/80059522/9c6e1bdc-2f3d-44f0-8a0c-042dd1eba229)
+
 
 ## Logical Design
-![image](https://github.com/mirchandani-mohnish/cachingForGeth/assets/87660206/4010b883-945d-4753-8d37-676a56aded04)
+![logical_design](https://github.com/mirchandani-mohnish/cachingForGeth/assets/80059522/0b6159d4-2c08-40ea-99a6-88eb171db28a)
 
 ## Platform Brief
 - Go-ethereum: Implements Ethereum blockchain in Go, used for Ethereum network interaction.
@@ -50,16 +51,16 @@ The following are the smart contracts implemented to check for eth calls:
 
 ## Results
 Latency for caching policies of diffrent sizes.
+![cache_size_3](https://github.com/mirchandani-mohnish/cachingForGeth/assets/80059522/2f897433-3cfc-4129-8f2b-ccf27d34949f)
 
-![image](https://github.com/mirchandani-mohnish/cachingForGeth/assets/87660206/50f71815-c629-48bc-b9a3-c06aff1b64cc)
+![cache_size_5](https://github.com/mirchandani-mohnish/cachingForGeth/assets/80059522/bd192e23-8e1e-43a0-bd79-6662c5463b4a)
 
-![image](https://github.com/mirchandani-mohnish/cachingForGeth/assets/87660206/b1857936-1364-4c75-89b9-326059f0aac8)
-
-![image](https://github.com/mirchandani-mohnish/cachingForGeth/assets/87660206/13ccbcfe-a2b9-4073-a198-3a7e84bd2f2c)
+![cache_size_8](https://github.com/mirchandani-mohnish/cachingForGeth/assets/80059522/dc2c5cca-277d-4fa3-ad87-346ffb59f96c)
 
 Hit-Miss Ratio (For 100 calls)
 
-![image](https://github.com/mirchandani-mohnish/cachingForGeth/assets/87660206/bb658e84-7847-454a-b3ba-dfd4d4f29204)
+![hit_miss_ratio](https://github.com/mirchandani-mohnish/cachingForGeth/assets/80059522/c5c12272-e884-492d-971a-37dad66a4f98)
+
 
 ## Conclusion
 - Caching across all policies generally leads to similar average results.
